@@ -26,5 +26,26 @@ struct Dimension2D
 	int height;
 };
 
+struct RGBColor
+{
+	int r;
+	int g;
+	int b;
+};
+
+struct WindowInput
+{
+	bool vkKeys[256];
+	Vector2D mousePos;
+};
+
+
+/* ENUM DEFINITIONS */
+
+enum class WindowMode : short
+{
+	WINDOWED,
+	FULLSCREEN
+};
 
 #endif // !_KATH_TYPES_HPP
