@@ -3,8 +3,10 @@
 
 /* INCLUDES */
 
-#include "Engine.hpp"
 #include "Game.hpp"
+
+#include "Engine.hpp"
+#include "Input.hpp"
 
 
 /* CLASS */

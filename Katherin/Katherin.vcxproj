@@ -129,16 +129,24 @@
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="KatherinGameDemo.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="GameProperties.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="Input.hpp" />
     <ClInclude Include="KatherinGameDemo.hpp" />
+    <ClInclude Include="GameProperties.hpp" />
+    <ClInclude Include="Resource.hpp" />
     <ClInclude Include="Types.hpp" />
     <ClInclude Include="Window.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

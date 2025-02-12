@@ -14,7 +14,10 @@ void KatherinGame::Finalize()
 
 void KatherinGame::Update()
 {
-	
+	if (Input::GetKeyDown(VK_ESCAPE))
+	{
+		Engine::Stop();
+	}
 }
 
 void KatherinGame::Render()
