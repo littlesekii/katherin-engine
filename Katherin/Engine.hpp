@@ -6,7 +6,7 @@
 
 #include "Window.hpp"
 #include "Game.hpp"
-
+#include "GameProperties.hpp"
 
 /* CLASS */
 
@@ -18,6 +18,8 @@ private:
 
 	int Loop();
 
+	void LoadWindowProperties();
+
 public:
 	static Window* window;
 
@@ -25,7 +27,12 @@ public:
 	Engine();
 	~Engine();
 
+
 	int Run(Game*);
+	static void Stop();
 };
+
+inline void Engine::Stop()
+{ window->Close(); }
 
 #endif // !_KATH_ENGINE_HPP

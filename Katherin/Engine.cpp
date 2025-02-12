@@ -9,8 +9,14 @@ Window* Engine::window = nullptr;
 
 Engine::Engine()
 {
+
 	window = new Window();
 	game = nullptr;
+
+	if (GameProperties::loadWindowProperties)
+	{
+		LoadWindowProperties();
+	}
 }
 
 Engine::~Engine()
@@ -18,15 +24,19 @@ Engine::~Engine()
 	delete window;
 }
 
-
 /* FUNCTIONS */
 
 int Engine::Run(Game* game)
 {
 	this->game = game;
 
-	window->Create();
+	if (!window->Create())
+	{
+		return 0;
+	}
+	
 	int result = Loop();
+
 	return result;	
 }
 
@@ -56,5 +66,18 @@ int Engine::Loop()
 	game->Finalize();
 
 	return (int)msg.wParam;
+}
+
+void Engine::LoadWindowProperties()
+{
+	window->SetMode(GameProperties::windowMode);
+	window->SetSize(GameProperties::windowSize);
+
+	window->SetBackgroundColor(GameProperties::windowBackgroundColor);
+
+	window->SetIcon(GameProperties::windowIconResource);
+	window->SetCursor(GameProperties::windowCursorResource);
+
+	window->SetTitle(GameProperties::windowTitle);
 }
 
