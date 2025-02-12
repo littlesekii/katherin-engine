@@ -1,5 +1,10 @@
 #include "Window.hpp"
 
+/* STATIC MEMBERS */
+
+WindowInput Window::input{};
+
+
 /* CONSTRUCTOR | DESTRUCTOR */
 
 Window::Window()
@@ -11,11 +16,13 @@ Window::Window()
 
 	position	= { 0, 0 };
 	screenSize	= { GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN) };
-	size		= (mode == WindowMode::WINDOWED ? DEFAULT_SIZE : screenSize);
+	size		= DEFAULT_SIZE;
 	clientSize	= size;
 
+	icon		= LoadIcon(NULL, IDI_APPLICATION);
+	cursor		= LoadCursor(NULL, IDC_ARROW);
 
-	strcpy_s(title, "Katherin Game");
+	SetTitle("Katherin Game");
 }
 
 Window::~Window()
@@ -27,6 +34,13 @@ Window::~Window()
 
 bool Window::Create()
 {
+	// adjust size when on fullscreen mode
+	if (mode == WindowMode::FULLSCREEN)
+	{
+		size = screenSize;
+		clientSize = size;
+	}
+
 	// create window class
 	WNDCLASSEX windowClass{};
 
@@ -36,9 +50,9 @@ bool Window::Create()
 	windowClass.cbClsExtra		= NULL;
 	windowClass.cbWndExtra		= NULL;
 	windowClass.hInstance		= instance;
-	windowClass.hIcon			= LoadIcon(NULL, IDI_APPLICATION);
-	windowClass.hCursor			= LoadCursor(NULL, IDC_ARROW);
-	windowClass.hbrBackground	= (HBRUSH) GetStockObject(BLACK_BRUSH);
+	windowClass.hIcon			= icon;
+	windowClass.hCursor			= cursor;
+	windowClass.hbrBackground	= CreateSolidBrush(RGB(backgroundColor.r, backgroundColor.g, backgroundColor.b));
 	windowClass.lpszMenuName	= NULL;
 	windowClass.lpszClassName	= "KathWindow";
 	windowClass.hIconSm			= NULL;
@@ -99,12 +113,26 @@ bool Window::Create()
 	return (handle ? true : false);
 }
 
+
 /* STATIC FUNCTIONS */
 
 LRESULT CALLBACK Window::WindowProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch (msg)
 	{
+	case WM_KEYDOWN:
+		input.vkKeys[wParam] = true;
+
+		return 0;
+	case WM_KEYUP:
+		input.vkKeys[wParam] = false;
+
+		return 0;
+	case WM_MOUSEMOVE:
+		input.mousePos.x = GET_X_LPARAM(lParam);
+		input.mousePos.y = GET_Y_LPARAM(lParam);
+
+		return 0;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 
