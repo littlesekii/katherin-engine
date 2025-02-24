@@ -1,6 +1,7 @@
 #include "GameProperties.hpp"
 
 bool		GameProperties::loadWindowProperties	= true;
+
 Dimension2D GameProperties::windowSize				= { 960, 540 };
 WindowMode	GameProperties::windowMode				= WindowMode::WINDOWED;
 
@@ -10,3 +11,11 @@ char		GameProperties::windowTitle[256]		= "Katherin Game";
 
 int			GameProperties::windowIconResource		= IDI_DEFAULT;
 int			GameProperties::windowCursorResource	= IDC_INVERTED;
+
+bool		GameProperties::windowShowFPS			= true;
+bool		GameProperties::windowShowFrameTime		= true;
+
+
+bool		GameProperties::loadGraphicsProperties	= true;
+
+bool		GameProperties::graphicsVerticalSync	= false;

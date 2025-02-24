@@ -133,6 +133,13 @@ LRESULT CALLBACK Window::WindowProc(HWND handle, UINT msg, WPARAM wParam, LPARAM
 		input.mousePos.y = GET_Y_LPARAM(lParam);
 
 		return 0;
+	case WM_KILLFOCUS:
+		for (bool &vkKey : input.vkKeys) 
+		{
+			vkKey = false;
+		}
+
+		return 0;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 
