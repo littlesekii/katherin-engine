@@ -39,6 +39,12 @@ struct WindowInput
 	Vector2D mousePos;
 };
 
+struct InputKeyPressed
+{
+	bool down;
+	bool up;
+};
+
 
 /* ENUM DEFINITIONS */
 
