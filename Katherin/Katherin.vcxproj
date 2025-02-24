@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DavyJones.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DavyJones.hpp" />
     <ClInclude Include="Engine.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Graphics.hpp" />

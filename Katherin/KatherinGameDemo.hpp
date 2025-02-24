@@ -7,6 +7,11 @@
 
 #include "Engine.hpp"
 #include "Input.hpp"
+#include "Timer.hpp"
+
+#include "DavyJones.hpp"
+
+#include <string>
 
 
 /* CLASS */
@@ -14,16 +19,14 @@
 class KatherinGame : public Game
 {
 private:
-	Window* window;
+	DavyJones* dava;
 
-	HDC hdc;
-	
 public:
 	
 	void Initialize();
 	void Finalize();
 
-	void Update();
+	void Update(float);
 	void Render();
 };
 

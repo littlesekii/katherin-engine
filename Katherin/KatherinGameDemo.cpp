@@ -3,30 +3,27 @@
 
 void KatherinGame::Initialize()
 {
-	window = Engine::window;
-	hdc = GetDC(window->GetHandle());
+	dava = new DavyJones();
 }
 
 void KatherinGame::Finalize()
 {
-	ReleaseDC(window->GetHandle(), hdc);
+	delete dava;
 }
 
-void KatherinGame::Update()
+void KatherinGame::Update(float delta)
 {
-	if (Input::GetKeyDown(VK_ESCAPE))
+	
+	if (Input::GetKeyPressed(VK_ESCAPE))
 	{
 		Engine::Stop();
 	}
+
+	dava->Update(delta);
+
 }
 
 void KatherinGame::Render()
 {
-	RECT drawRect{};
-
-	GetClientRect(window->GetHandle(), &drawRect);
-
-	SetBkMode(hdc, TRANSPARENT);
-	SetTextColor(hdc, RGB(255, 255, 255));
-	DrawText(hdc, "Katherin Game Demo", -1, &drawRect, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+	dava->Render();
 }
